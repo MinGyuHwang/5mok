@@ -65,17 +65,50 @@ void replacestone2()
         }
     }
 }
-void CompareWinOrLose_Player1()
-{
-    if ((Grid_arr[row][col] == 'O ') && (Grid_arr[row+1][col+1] == 'O ') && (Grid_arr[row+2][col+2] == 'O ') && (Grid_arr[row+3][col+3] == 'O ') && (Grid_arr[row+4][col+4] == 'O '))
-        printf("게임이 종료되었습니다. O 가 승리하였습니다. ");
-    system("exit");
-}
+
 void CompareWinOrLose_Player2()
 {
-    if ((Grid_arr[row][col] == 'X ') && (Grid_arr[row + 1][col + 1] == 'X ') && (Grid_arr[row + 2][col + 2] == 'X ') && (Grid_arr[row + 3][col + 3] == 'X ') && (Grid_arr[row + 4][col + 4] == 'X '))
+    if ((Grid_arr[row][col] == 'O') && (Grid_arr[row + 1][col + 1] == 'O') && (Grid_arr[row + 2][col + 2] == 'O') && (Grid_arr[row + 3][col + 3] == 'O') && (Grid_arr[row + 4][col + 4] == 'O'))
+    {
+        printf("게임이 종료되었습니다. O 가 승리하였습니다. ");
+        system("exit");
+        return 0;
+    }
+    else if ((Grid_arr[row][col]== 'O') && (Grid_arr[row+1][col]== 'O') && (Grid_arr[row +2][col] == 'O') && (Grid_arr[row + 3][col] == 'O') && (Grid_arr[row + 4][col] == 'O'))
+    {
+        printf("게임이 종료되었습니다. O 가 승리하였습니다. ");
+        system("exit");
+        return 0;
+    }
+    else if ((Grid_arr[row][col] == '0') && (Grid_arr[row][col + 1] == 'O') && (Grid_arr[row][col + 2] == 'O') && (Grid_arr[row][col + 3] == 'O') && (Grid_arr[row][col + 4] == 'O'))
+    {
+        printf("게임이 종료되었습니다. O 가 승리하였습니다. ");
+        system("exit");
+        return 0;
+    }
+    return 0;
+}
+void CompareWinOrLose_Player1()
+{
+    if ((Grid_arr[row][col] == 'X') && (Grid_arr[row + 1][col + 1] == 'X') && (Grid_arr[row + 2][col + 2] == 'X') && (Grid_arr[row + 3][col + 3] == 'X') && (Grid_arr[row + 4][col + 4] == 'X'))
+    {
         printf("게임이 종료되었습니다. X 가 승리하였습니다. ");
-    system("exit");
+        system("exit");
+        return 0;
+    }
+    else if ((Grid_arr[row][col] == 'X') && (Grid_arr[row + 1][col] == 'X') && (Grid_arr[row + 2][col] == 'X') && (Grid_arr[row + 3][col] == 'X') && (Grid_arr[row + 4][col] == 'X'))
+    {
+        printf("게임이 종료되었습니다. X 가 승리하였습니다. ");
+        system("exit");
+        return 0;
+    }
+    else if ((Grid_arr[row][col] == 'X') && (Grid_arr[row][col + 1] == 'X') && (Grid_arr[row][col + 2] == 'X') && (Grid_arr[row][col + 3] == 'X') && (Grid_arr[row][col + 4] == 'X'))
+    {
+        printf("게임이 종료되었습니다. X 가 승리하였습니다. ");
+        system("exit");
+        return 0;
+    }
+    return 0;
 }
 int main()
 {
@@ -90,20 +123,18 @@ int main()
         {
             printf("플레이어 1의 차례 (돌: X)\n");
             replacestone1();
+            CompareWinOrLose_Player1();
             player = 2;
         }
         else
         {
             printf("플레이어 2의 차례 (돌: O)\n");
             replacestone2();
+            CompareWinOrLose_Player2();
             player = 1;
         }
-        for (int i = 0; i < 5; i++)
-        {
-            CompareWinOrLose_Player1();
 
-            CompareWinOrLose_Player2();
-        }
+    
 
         
     }
