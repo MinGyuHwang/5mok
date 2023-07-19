@@ -18,7 +18,6 @@ void initGrid()
         }
     }
 }
-
 void printGrid()
 {
     for (int i = 0; i < GRID_SIZE; i++)
@@ -30,18 +29,17 @@ void printGrid()
         printf("\n");
     }
 }
-
 void replacestone1()
 {
     printf("행 번호를 입력하세요 : ");
     scanf("%d", &row);
-    printf("\n열 번호를 입력하세요 : ");
+    printf("열 번호를 입력하세요 : ");
     scanf("%d", &col);
     if ((row >= 1) && (col >= 1) && (row <= GRID_SIZE) && (col <= GRID_SIZE))
     {
         if ((Grid_arr[row][col] == '+') && (Grid_arr[row][col] != 'O'))
         {
-            Grid_arr[row][col] = 'X';
+            Grid_arr[row-1][col-1] = 'X';
         }
         else
         {
@@ -49,18 +47,17 @@ void replacestone1()
         }
     }
 }
-
 void replacestone2()
 {
     printf("행 번호를 입력하세요 : ");
     scanf("%d", &row);
-    printf("\n열 번호를 입력하세요 : ");
+    printf("열 번호를 입력하세요 : ");
     scanf("%d", &col);
     if ((row >= 1) && (col >= 1) && (row <= GRID_SIZE) && (col <= GRID_SIZE))
     {
         if ((Grid_arr[row][col] == '+') && (Grid_arr[row][col] != 'X'))
         {
-            Grid_arr[row][col] = 'O';
+            Grid_arr[row-1][col-1] = 'O';
         }
         else
         {
@@ -68,7 +65,18 @@ void replacestone2()
         }
     }
 }
-
+void CompareWinOrLose_Player1()
+{
+    if ((Grid_arr[row][col] == 'O ') && (Grid_arr[row+1][col+1] == 'O ') && (Grid_arr[row+2][col+2] == 'O ') && (Grid_arr[row+3][col+3] == 'O ') && (Grid_arr[row+4][col+4] == 'O '))
+        printf("게임이 종료되었습니다. O 가 승리하였습니다. ");
+    system("exit");
+}
+void CompareWinOrLose_Player2()
+{
+    if ((Grid_arr[row][col] == 'X ') && (Grid_arr[row + 1][col + 1] == 'X ') && (Grid_arr[row + 2][col + 2] == 'X ') && (Grid_arr[row + 3][col + 3] == 'X ') && (Grid_arr[row + 4][col + 4] == 'X '))
+        printf("게임이 종료되었습니다. X 가 승리하였습니다. ");
+    system("exit");
+}
 int main()
 {
     initGrid(); // grid 초기화작업
@@ -90,9 +98,14 @@ int main()
             replacestone2();
             player = 1;
         }
+        for (int i = 0; i < 5; i++)
+        {
+            CompareWinOrLose_Player1();
 
-        // 게임 종료 조건 추가 (추가할 조건 필요)
+            CompareWinOrLose_Player2();
+        }
+
+        
     }
-
-    return 0;
+       return 0;
 }
