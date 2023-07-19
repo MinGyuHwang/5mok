@@ -1,27 +1,65 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
-#define GRID 19
+#define GRID_SIZE 19
 
-void drawing_board()
+
+
+char Grid_arr[GRID_SIZE][GRID_SIZE]; // 전역변수로 선언
+
+void initGrid()
 {
-	for (int j = 0; j < GRID; j++)
+	for (int i = 0; i < GRID_SIZE; i++) 
 	{
-		for (int i = 0; i < GRID; i++)
+		for (int j = 0; j < GRID_SIZE; j++)
 		{
-			printf(" ┼");
+			Grid_arr[i][j] = '+'; // 초기값 '┼'로 설정
+		}
+	}
+
+}
+void printGrid()
+{
+	for (int i = 0; i < GRID_SIZE; i++)
+	{
+		for (int j = 0; j < GRID_SIZE; j++) 
+		{
+			printf("%c ", Grid_arr[i][j]);
 		}
 		printf("\n");
 	}
-} //19x19 격자 만드는 함수
-
-void put_black()
+}
+void replaceStone(int row, int col)
 {
-
+	if ((Grid_arr [row][col] == '+') && ~(Grid_arr [row][col] == '○'))
+	{
+		Grid_arr [row][col] = '● ';
+	}
+	else if ((Grid_arr [row][col] == '+') && ~(Grid_arr [row][col] == '●'))
+	{
+		Grid_arr [row][col] = '○ ';
+	}
+	else
+	{
+		printf("오류 입니다.\n");
+	}
 }
 
-void put_white()
-void(compare_rocks)
 int main()
 {
-	drawing_board();
+	initGrid();
+	int row, col=0;
+	while (1)
+	{
+		printGrid();
+		printf("행 번호를 입력하세요 : ");
+		scanf("%d", &row);
+		printf("\n열 번호를 입력하세요 : ");
+		scanf("%d", &col);
+
+		if ((row >= 1) && (col >= 1) && (row <= GRID_SIZE) && (col <= GRID_SIZE))
+			replaceStone(row - 1, col - 1);
+		else
+			printf("잘못된 입력입니다.");
+	}
 }
