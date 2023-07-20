@@ -164,7 +164,7 @@ int main()
                     CompareWinOrLose_Player1(p1_i, p1_j);
                     CompareWinOrLose_Player2(p1_i, p1_j);
 
-                    player = 2; //
+                    player = 2; ///
 
                 }
             }
